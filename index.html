@@ -14,7 +14,7 @@ body {
     animation: gradientShift 6s ease infinite;
     color: white;
     margin: 0;
-    padding: 20px 15px;
+    padding: calc(20px + env(safe-area-inset-top)) 15px;
     text-align: center;
 }
 
@@ -29,11 +29,16 @@ body {
     margin: auto;
 }
 
+/* ===== JUDUL ANTI KEPOTONG ===== */
 h1 {
-    font-size: 2em;
-    margin-bottom: 25px;
+    font-size: 1.8em;
+    line-height: 1.3;
+    margin: 20px 0 25px;
+    padding: 0 10px;
+    word-break: break-word;
 }
 
+/* ===== TEKS ===== */
 .text {
     font-size: 1.05em;
     line-height: 1.8;
@@ -41,6 +46,7 @@ h1 {
     min-height: 1.4em;
 }
 
+/* ===== BUTTON ===== */
 button {
     width: 100%;
     margin-top: 25px;
@@ -60,6 +66,7 @@ button:hover {
     transform: scale(1.05);
 }
 
+/* ===== HEART ANIMATION ===== */
 .hearts {
     position: fixed;
     top: -40px;
@@ -77,13 +84,13 @@ button:hover {
     }
 }
 
-/* ===== DESKTOP (OPSIONAL) ===== */
+/* ===== DESKTOP ===== */
 @media (min-width: 768px) {
-    h1 {
-        font-size: 2.8em;
-    }
     .container {
         max-width: 600px;
+    }
+    h1 {
+        font-size: 2.6em;
     }
     .text {
         font-size: 1.2em;
@@ -95,41 +102,45 @@ button:hover {
 <body>
 
 <div class="container">
-    <h1>💖 Hai, Cewek Cantik! 💖</h1>
 
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
+<h1>
+💖 Hai, Cewek Cantik! 💖<br>
+<span style="font-size:0.9em;">Aku Mau Jujur Nih…</span>
+</h1>
 
-    <br>
+<div class="text"></div>
+<div class="text"></div>
+<div class="text"></div>
+<div class="text"></div>
+<div class="text"></div>
 
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
+<br>
 
-    <br>
+<div class="text"></div>
+<div class="text"></div>
+<div class="text"></div>
 
-    <div class="text"></div>
-    <div class="text"></div>
+<br>
 
-    <br>
+<div class="text"></div>
+<div class="text"></div>
 
-    <div class="text"></div>
-    <div class="text"></div>
+<br>
 
-    <br>
+<div class="text"></div>
+<div class="text"></div>
 
-    <div class="text"><strong></strong></div>
-    <div class="text"><strong></strong></div>
+<br>
 
-    <br>
+<div class="text"><strong></strong></div>
+<div class="text"><strong></strong></div>
 
-    <div class="text"></div>
-    <div class="text"></div>
+<br>
 
-    <button id="btnWA" onclick="kirimWA()">Kirim Jawaban ke WhatsApp 💬</button>
+<div class="text"></div>
+<div class="text"></div>
+
+<button id="btnWA" onclick="kirimWA()">Kirim Jawaban ke WhatsApp 💬</button>
 </div>
 
 <div class="hearts" id="hearts">💖💖💖</div>
@@ -174,20 +185,20 @@ function typeText(el, text, done) {
     }, 35);
 }
 
-function start() {
+function startTyping() {
     if (index < texts.length) {
         typeText(elements[index], texts[index], () => {
             index++;
-            start();
+            startTyping();
         });
     } else {
         document.getElementById("btnWA").style.display = "block";
     }
 }
-start();
+startTyping();
 
 function kirimWA() {
-    const nomor = "62895338299090"; // ganti nomor
+    const nomor = "62895338299090"; // GANTI NOMOR
     const pesan = encodeURIComponent("aku mau jadi pacar kamu 💖😍");
     window.open(`https://wa.me/${nomor}?text=${pesan}`, "_blank");
 

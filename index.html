@@ -1,107 +1,137 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nembak Cewek Romantis</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nembak Cewek Romantis</title>
 
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(45deg, #ff9a9e, #fecfef, #a8edea, #fed6e3);
-            background-size: 400% 400%;
-            animation: gradientShift 6s ease infinite;
-            color: white;
-            text-align: center;
-            padding: 40px;
-            margin: 0;
-            overflow-x: hidden;
-        }
+<style>
+/* ===== MOBILE FIRST ===== */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(45deg, #ff9a9e, #fecfef, #a8edea, #fed6e3);
+    background-size: 400% 400%;
+    animation: gradientShift 6s ease infinite;
+    color: white;
+    margin: 0;
+    padding: 20px 15px;
+    text-align: center;
+}
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-        h1 {
-            font-size: 2.8em;
-            margin-bottom: 30px;
-        }
+.container {
+    max-width: 420px;
+    margin: auto;
+}
 
-        .text {
-            font-size: 1.2em;
-            line-height: 1.7;
-            margin: 8px 0;
-            min-height: 1.5em;
-        }
+h1 {
+    font-size: 2em;
+    margin-bottom: 25px;
+}
 
-        button {
-            background: #25d366;
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            font-size: 1.2em;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-top: 30px;
-            display: none;
-            transition: 0.3s;
-        }
+.text {
+    font-size: 1.05em;
+    line-height: 1.8;
+    margin: 6px 0;
+    min-height: 1.4em;
+}
 
-        button:hover {
-            background: #128c7e;
-            transform: scale(1.1);
-        }
+button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px;
+    font-size: 1.1em;
+    border-radius: 50px;
+    border: none;
+    background: #25d366;
+    color: white;
+    cursor: pointer;
+    display: none;
+    transition: 0.3s;
+}
 
-        .hearts {
-            position: fixed;
-            top: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 2em;
-            animation: fall 3s ease-out forwards;
-            display: none;
-        }
+button:hover {
+    background: #128c7e;
+    transform: scale(1.05);
+}
 
-        @keyframes fall {
-            to {
-                top: 100vh;
-                opacity: 0;
-            }
-        }
-    </style>
+.hearts {
+    position: fixed;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8em;
+    animation: fall 3s ease-out forwards;
+    display: none;
+}
+
+@keyframes fall {
+    to {
+        top: 100vh;
+        opacity: 0;
+    }
+}
+
+/* ===== DESKTOP (OPSIONAL) ===== */
+@media (min-width: 768px) {
+    h1 {
+        font-size: 2.8em;
+    }
+    .container {
+        max-width: 600px;
+    }
+    .text {
+        font-size: 1.2em;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<h1>💖 Hai, Cewek Cantik! 💖</h1>
+<div class="container">
+    <h1>💖 Hai, Cewek Cantik! 💖</h1>
 
-<div id="container">
     <div class="text"></div>
     <div class="text"></div>
     <div class="text"></div>
     <div class="text"></div>
     <div class="text"></div>
+
     <br>
+
     <div class="text"></div>
     <div class="text"></div>
     <div class="text"></div>
+
     <br>
+
     <div class="text"></div>
     <div class="text"></div>
+
     <br>
+
     <div class="text"></div>
     <div class="text"></div>
+
     <br>
+
     <div class="text"><strong></strong></div>
     <div class="text"><strong></strong></div>
+
     <br>
+
     <div class="text"></div>
     <div class="text"></div>
+
+    <button id="btnWA" onclick="kirimWA()">Kirim Jawaban ke WhatsApp 💬</button>
 </div>
 
-<button onclick="kirimWA()" id="btnWA">Kirim Jawaban ke WA 💬</button>
 <div class="hearts" id="hearts">💖💖💖</div>
 
 <script>
@@ -130,35 +160,34 @@ const texts = [
 ];
 
 const elements = document.querySelectorAll(".text");
-let textIndex = 0;
+let index = 0;
 
-function typeText(element, text, callback) {
+function typeText(el, text, done) {
     let i = 0;
-    const interval = setInterval(() => {
-        element.innerHTML += text.charAt(i);
+    const timer = setInterval(() => {
+        el.innerHTML += text.charAt(i);
         i++;
         if (i === text.length) {
-            clearInterval(interval);
-            setTimeout(callback, 600);
+            clearInterval(timer);
+            setTimeout(done, 500);
         }
-    }, 40);
+    }, 35);
 }
 
-function startTyping() {
-    if (textIndex < texts.length) {
-        typeText(elements[textIndex], texts[textIndex], () => {
-            textIndex++;
-            startTyping();
+function start() {
+    if (index < texts.length) {
+        typeText(elements[index], texts[index], () => {
+            index++;
+            start();
         });
     } else {
-        document.getElementById("btnWA").style.display = "inline-block";
+        document.getElementById("btnWA").style.display = "block";
     }
 }
-
-startTyping();
+start();
 
 function kirimWA() {
-    const nomor = "62895338299090"; // ganti nomor kamu
+    const nomor = "62895338299090"; // ganti nomor
     const pesan = encodeURIComponent("aku mau jadi pacar kamu 💖😍");
     window.open(`https://wa.me/${nomor}?text=${pesan}`, "_blank");
 

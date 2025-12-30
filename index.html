@@ -6,15 +6,14 @@
 <title>Nembak Cewek Romantis</title>
 
 <style>
-/* ===== MOBILE FIRST ===== */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     background: linear-gradient(45deg, #ff9a9e, #fecfef, #a8edea, #fed6e3);
     background-size: 400% 400%;
     animation: gradientShift 6s ease infinite;
     color: #000;
     margin: 0;
-    padding: calc(30px + env(safe-area-inset-top)) 15px 30px;
+    padding: calc(40px + env(safe-area-inset-top)) 15px 30px;
     text-align: center;
 }
 
@@ -29,14 +28,19 @@ body {
     margin: auto;
 }
 
-/* ===== JUDUL FIX EMOJI ===== */
+/* ===== EMOJI DIPISAH (ANTI KEPOTONG) ===== */
+.emoji {
+    font-size: 2.2em;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+/* ===== JUDUL ===== */
 h1 {
-    font-size: 1.6em;
-    line-height: 1.6; /* penting untuk emoji */
-    margin: 25px 0 30px;
-    padding: 10px 12px; /* ruang atas bawah */
-    word-break: break-word;
-    overflow: visible;
+    font-size: 1.7em;
+    line-height: 1.4;
+    margin: 0 0 25px;
+    padding: 0 10px;
 }
 
 /* ===== TEKS ===== */
@@ -67,7 +71,7 @@ button:hover {
     transform: scale(1.05);
 }
 
-/* ===== HEART ANIMATION ===== */
+/* ===== HEART FALL ===== */
 .hearts {
     position: fixed;
     top: -40px;
@@ -91,7 +95,7 @@ button:hover {
         max-width: 600px;
     }
     h1 {
-        font-size: 2.6em;
+        font-size: 2.5em;
     }
     .text {
         font-size: 1.2em;
@@ -104,8 +108,10 @@ button:hover {
 
 <div class="container">
 
+<div class="emoji">💖</div>
+
 <h1>
-💖 Hai, Cewek Cantik! 💖<br>
+Hai, Cewek Cantik! <br>
 <span style="font-size:0.9em;">Aku Mau Jujur Nih…</span>
 </h1>
 
@@ -211,4 +217,3 @@ function kirimWA() {
 
 </body>
 </html>
-
